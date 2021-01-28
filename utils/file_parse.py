@@ -13,9 +13,9 @@ import os
 import uuid
 import platform
 from io import BytesIO
-import pythoncom
 
 try:
+    import pythoncom
     import win32com.client as wc
 except:
     ...

@@ -20,6 +20,13 @@ pip install python-docx
 pip install flask
 ```
 
+window 环境需要安装
+
+```
+pip install pywin32
+```
+
+
 # 使用（客户端）
 
 直接调用解析函数即可，参考 customer.py
