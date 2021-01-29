@@ -35,7 +35,7 @@ pip install pywin32
 from utils.parse import parse
 
 test_list = [
-    '123.bmp',
+    'test.bmp',
     'https://gitee.com/TurboWay/blogimg/raw/master/img/test.jpg',
     'https://gitee.com/TurboWay/blogimg/raw/master/img/test.png',
     'https://gitee.com/TurboWay/blogimg/raw/master/img/test.doc',
