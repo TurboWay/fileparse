@@ -11,12 +11,15 @@ from utils.file_parse import docx_parse, doc_parse, pdf_parse
 from utils.img_ocr import img_parse
 
 
-def parse(fb, file_type):
+def parse(fb, file_type=None):
     """
     :param fb: A filename (string), pathlib.Path object, file url or a file object
     :param file_type: 文件类型
     :return: 识别是否成功，识别内容
     """
+    if isinstance(fb, str) and not file_type:
+        file_type = fb.split('.')[-1]
+
     if isinstance(fb, str) and fb.startswith('http'):
         fb = BytesIO(requests.get(fb).content)
 

@@ -8,16 +8,19 @@
 import base64
 from io import BytesIO
 from flask import Flask, jsonify, make_response, request
+from hashlib import md5
 from utils.parse import parse
 
 app = Flask(__name__)
-auth = 'fileparse_key'  # 设置 api 秘钥
+key = 'fileparse'  # 设置 api 秘钥
 
 
 @app.route('/openapi/parse', methods=['POST'])
 def fileparse():
-    if auth and request.form.get('auth') != auth:
-        return make_response(jsonify({'success': False, 'result': '', 'errorMessage': 'auth error !'}), 404)
+    t = request.form.get('t')
+    token = request.form.get('token')
+    if key and token != md5(f'{key}{t}'.encode(encoding='utf-8')).hexdigest():
+        return make_response(jsonify({'success': False, 'result': '', 'errorMessage': 'token error !'}), 404)
     fileData = request.form.get('fileData')
     fileType = request.form.get('fileType')
     if not fileData or not fileType:

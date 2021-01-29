@@ -5,8 +5,13 @@
 # @Site : 
 # @Describe: api 测试
 
+import time
 import base64
 import requests
+from hashlib import md5
+
+key = 'fileparse'
+
 
 def test(path):
     if path.startswith('http'):
@@ -15,16 +20,20 @@ def test(path):
     else:
         with open(path, 'rb') as f:
             fileData = base64.b64encode(f.read())
+    t = int(time.time() * 1000)
     data = {
         'fileData': fileData,
         'fileType': path.split('.')[-1],
-        'auth': 'fileparse_key'
+        't': t,
+        'token': md5(f'{key}{t}'.encode(encoding='utf-8')).hexdigest()
     }
     url = 'http://127.0.0.1:9527/openapi/parse'
     res = requests.post(url, data=data).json()
     return res
 
+
 test_list = [
+    '123.bmp',
     'https://gitee.com/TurboWay/blogimg/raw/master/img/test.jpg',
     'https://gitee.com/TurboWay/blogimg/raw/master/img/test.png',
     'https://gitee.com/TurboWay/blogimg/raw/master/img/test.doc',

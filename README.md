@@ -29,7 +29,24 @@ pip install pywin32
 
 # 使用（客户端）
 
-直接调用解析函数即可，参考 customer.py
+直接调用解析函数即可
+
+```python
+from utils.parse import parse
+
+test_list = [
+    '123.bmp',
+    'https://gitee.com/TurboWay/blogimg/raw/master/img/test.jpg',
+    'https://gitee.com/TurboWay/blogimg/raw/master/img/test.png',
+    'https://gitee.com/TurboWay/blogimg/raw/master/img/test.doc',
+    'https://gitee.com/TurboWay/blogimg/raw/master/img/test.docx',
+    'https://gitee.com/TurboWay/blogimg/raw/master/img/test.pdf'
+]
+
+for path in test_list:
+    issuccess, content = parse(path)
+    print(path, issuccess, content)
+```
 
 # 使用（服务端）
 
@@ -47,7 +64,8 @@ pip install pywin32
 |:----    |:---|:----- |-----   |
 |fileData | 是 |string |  文件内容的base64字符串  |
 |fileType | 是 |string |  文件类型  |
-|auth | 是 |string | api 秘钥，默认 fileparse_key  |
+|t | 是 |int | 当前时间戳  |
+|token | 是 |string | token。生成方式：md5(key+当前时间戳)，默认 key 为 fileparse  |
 
  **返回示例**
 

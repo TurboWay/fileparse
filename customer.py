@@ -8,6 +8,7 @@
 from utils.parse import parse
 
 test_list = [
+    '123.bmp',
     'https://gitee.com/TurboWay/blogimg/raw/master/img/test.jpg',
     'https://gitee.com/TurboWay/blogimg/raw/master/img/test.png',
     'https://gitee.com/TurboWay/blogimg/raw/master/img/test.doc',
@@ -16,6 +17,5 @@ test_list = [
 ]
 
 for path in test_list:
-    file_type = path.split('.')[-1]
-    issuccess, content = parse(path, file_type)
+    issuccess, content = parse(path)
     print(path, issuccess, content)
