@@ -33,7 +33,7 @@ def test(path):
 
 
 test_list = [
-    '123.bmp',
+    'test.bmp',
     'https://gitee.com/TurboWay/blogimg/raw/master/img/test.jpg',
     'https://gitee.com/TurboWay/blogimg/raw/master/img/test.png',
     'https://gitee.com/TurboWay/blogimg/raw/master/img/test.doc',
